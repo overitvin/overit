@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ověření VIN</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#0f172a;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+}
+
+.container{
+  width:90%;
+  max-width:420px;
+  background:#111827;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+}
+
+h1{
+  font-size:20px;
+  margin-bottom:10px;
+}
+
+p{
+  font-size:14px;
+  color:#9ca3af;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin-top:15px;
+  border-radius:8px;
+  border:1px solid #374151;
+  background:#020617;
+  color:#fff;
+  font-size:16px;
+  text-align:center;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:12px;
+  border:none;
+  border-radius:8px;
+  background:#22c55e;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:0.5;
+}
+
+.error{
+  color:#ef4444;
+  font-size:12px;
+  margin-top:6px;
+  display:none;
+}
+
+.loader{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:#020617;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Auto vypadá perfektně.<br>Historie může být jiná</h1>
+  <p>Zkontroluj VIN během 1–3 minut</p>
+
+  <input id="vin" placeholder="Zadej VIN (17 znaků)" maxlength="17">
+  <button id="btn" disabled>Ověřit VIN</button>
+  <div class="error" id="error">Neplatný VIN</div>
+</div>
+
+<div class="loader" id="loader">Zpracovávám VIN...</div>
+
+<script>
+const input = document.getElementById("vin");
+const btn = document.getElementById("btn");
+const error = document.getElementById("error");
+
+// Валидация VIN
+function isValidVIN(v){
+  return /^[A-HJ-NPR-Z0-9]{17}$/.test(v);
+}
+
+// ввод
+input.addEventListener("input", ()=>{
+  input.value = input.value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g,'');
+  btn.disabled = input.value.length !== 17;
+  error.style.display="none";
+});
+
+// восстановление VIN
+input.value = localStorage.getItem("vin") || "";
+btn.disabled = input.value.length !== 17;
+
+// источник (если передан)
+const paramsUrl = new URLSearchParams(window.location.search);
+const source = paramsUrl.get("src") || "direct";
+
+// ===== ТВОЙ ТРЕКЕР =====
+const TRACKER_URL = "https://tracker.com/click";
+
+btn.onclick = ()=>{
+  const vin = input.value.trim();
+
+  if(!isValidVIN(vin)){
+    error.style.display="block";
+    return;
+  }
+
+  localStorage.setItem("vin", vin);
+
+  // аналитика (если используешь)
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push({
+    event:"vin_submit",
+    vin_length:vin.length
+  });
+
+  // сбор параметров
+  const params = new URLSearchParams({
+    sub1: vin,
+    sub2: source,
+    sub3: "vinpage_v1"
+  });
+
+  const finalUrl = TRACKER_URL + "?" + params.toString();
+
+  // показ загрузки
+  document.getElementById("loader").style.display="flex";
+
+  setTimeout(()=>{
+    window.location.href = finalUrl;
+  }, 1200);
+};
+</script>
+
+</body>
+</html>
