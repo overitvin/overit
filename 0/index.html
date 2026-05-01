@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ověření VIN</title>
+
+  <style>
+    :root {
+      --bg: #020617;
+      --card: rgba(15, 23, 42, 0.92);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --green: #22c55e;
+      --green-dark: #16a34a;
+      --red: #ef4444;
+      --border: rgba(148, 163, 184, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(90deg, rgba(127, 29, 29, .45), rgba(20, 83, 45, .45)),
+        radial-gradient(circle at top, #1e293b, #020617 60%);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: 1fr 420px 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .side {
+      min-height: 360px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      background: rgba(2, 6, 23, .48);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .side.bad {
+      background:
+        linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.75)),
+        url("https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=900&q=80") center/cover;
+    }
+
+    .side.good {
+      background:
+        linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.72)),
+        url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80") center/cover;
+    }
+
+    .tag {
+      width: fit-content;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.55);
+      border: 1px solid var(--border);
+      color: #e2e8f0;
+      margin-bottom: 10px;
+    }
+
+    .side h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .side p {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      background: var(--card);
+      box-shadow: 0 30px 80px rgba(0,0,0,.45);
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .input-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      background: #020617;
+      color: var(--text);
+      outline: none;
+      font-size: 18px;
+      letter-spacing: 1.4px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    input:focus {
+      border-color: var(--green);
+    }
+
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 16px;
+      padding: 16px;
+      background: var(--green);
+      color: #052e16;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    button:hover:not(:disabled) {
+      background: var(--green-dark);
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+    }
+
+    .error {
+      display: none;
+      color: var(--red);
+      font-size: 13px;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    .trust {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    .reviews {
+      margin-top: 22px;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(2, 6, 23, .75);
+    }
+
+    .review-track {
+      display: flex;
+      transition: transform .45s ease;
+    }
+
+    .review {
+      min-width: 100%;
+      padding: 14px;
+      color: #dbeafe;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: #020617;
+      color: var(--text);
+      z-index: 10;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .loader-card {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      background: #0f172a;
+      width: min(360px, 92vw);
+    }
+
+    .spinner {
+      width: 42px;
+      height: 42px;
+      border: 4px solid rgba(255,255,255,.18);
+      border-top-color: var(--green);
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 920px) {
+      .page {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+      }
+
+      .side {
+        min-height: 210px;
+      }
+
+      .side.good {
+        order: 3;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="side bad">
+      <div class="tag">Riziko</div>
+      <h3>Na fotkách může auto vypadat perfektně</h3>
+      <p>Historie může ukázat nehody, aukce nebo stočené kilometry.</p>
+    </section>
+
+    <section class="card">
+      <h1>Ověř historii auta podle VIN</h1>
+      <p class="subtitle">
+        Zkontroluj nehody, nájezd kilometrů a záznamy z aukcí během několika minut.
+      </p>
+
+      <div class="input-box">
+        <input
+          id="vinInput"
+          maxlength="17"
+          placeholder="Zadej VIN (17 znaků)"
+          autocomplete="off"
+        />
+        <button id="submitBtn" disabled>Ověřit VIN</button>
+        <div id="error" class="error">Neplatný VIN. Musí mít 17 znaků bez I, O, Q.</div>
+      </div>
+
+      <div class="trust">
+        <div>✓ Bez registrace</div>
+        <div>✓ VIN se automaticky předá do ověření</div>
+        <div>✓ Výsledek ihned na partnerském webu</div>
+      </div>
+
+      <div class="reviews">
+        <div class="review-track" id="reviewTrack">
+          <div class="review">„Vypadalo jako top stav → historie ukázala 2 nehody.“</div>
+          <div class="review">„V inzerátu 120 000 km → v historii bylo přes 210 000 km.“</div>
+          <div class="review">„VIN odhalil aukci po havárii. Nekoupil jsem problém.“</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="side good">
+      <div class="tag">Výhoda</div>
+      <h3>VIN kontrola může ušetřit 50–150 tis. Kč</h3>
+      <p>Ověř historii před platbou, ne až po drahé chybě.</p>
+    </section>
+  </main>
+
+  <div class="loader" id="loader">
+    <div class="loader-card">
+      <div class="spinner"></div>
+      <strong>Zpracovávám VIN…</strong>
+      <p style="color:#94a3b8;margin:10px 0 0;">Připravuji ověření vozidla.</p>
+    </div>
+  </div>
+
+  <script>
+    const TRACKER_URL = "https://track.altercpa.red/e65a71fec5134ca2?data1=vin&data2=source&data3=campaign";
+
+    const input = document.getElementById("vinInput");
+    const btn = document.getElementById("submitBtn");
+    const error = document.getElementById("error");
+    const loader = document.getElementById("loader");
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const source = urlParams.get("src") || "direct";
+    const campaign = urlParams.get("cmp") || "vin_landing_v1";
+    const prefilledVin = urlParams.get("vin") || localStorage.getItem("last_vin") || "";
+
+    function normalizeVIN(value) {
+      return value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g, "").slice(0, 17);
+    }
+
+    function isValidVIN(vin) {
+      return /^[A-HJ-NPR-Z0-9]{17}$/.test(vin);
+    }
+
+    function updateState() {
+      const vin = normalizeVIN(input.value);
+      input.value = vin;
+      btn.disabled = !isValidVIN(vin);
+      error.style.display = "none";
+    }
+
+    input.value = normalizeVIN(prefilledVin);
+    updateState();
+    input.focus();
+
+    input.addEventListener("input", updateState);
+
+    btn.addEventListener("click", async () => {
+      const vin = normalizeVIN(input.value);
+
+      if (!isValidVIN(vin)) {
+        error.style.display = "block";
+        return;
+      }
+
+      localStorage.setItem("last_vin", vin);
+
+      try {
+        await navigator.clipboard.writeText(vin);
+      } catch (e) {
+        // Clipboard может быть заблокирован браузером. На редирект это не влияет.
+      }
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "vin_submit",
+        vin_length: vin.length,
+        source: source,
+        campaign: campaign
+      });
+
+      const trackerParams = new URLSearchParams({
+        sub1: vin,
+        sub2: source,
+        sub3: campaign
+      });
+
+      const finalUrl = TRACKER_URL + "?" + trackerParams.toString();
+
+      loader.style.display = "flex";
+
+      setTimeout(() => {
+        window.location.href = finalUrl;
+      }, 1200);
+    });
+
+    let slide = 0;
+    const reviewTrack = document.getElementById("reviewTrack");
+
+    setInterval(() => {
+      slide = (slide + 1) % 3;
+      reviewTrack.style.transform = `translateX(-${slide * 100}%)`;
+    }, 3200);
+  </script>
+</body>
+</html>
