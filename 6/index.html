@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>Ověření VIN online | Historie auta během 30 sekund</title>
+  <meta name="description" content="Ověřte VIN číslo před koupí auta. Zjistěte nehody, stočené kilometry, leasing, exekuce, odcizení a servisní historii během několika sekund." />
+  <meta name="keywords" content="VIN kontrola, ověření VIN, historie auta, kontrola auta, stočené kilometry, havárie auta, Česká republika" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#05070b" />
+
+  <meta property="og:title" content="Zjistěte skutečnou historii auta během 30 sekund" />
+  <meta property="og:description" content="Skryté nehody, stočené kilometry, exekuce, leasing a další rizika před koupí auta." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="cs_CZ" />
+  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='100%25' height='100%25' fill='%2305070b'/%3E%3Ctext x='50%25' y='48%25' fill='%23d7aa4d' font-size='64' font-family='Arial' text-anchor='middle'%3EVIN Kontrola%3C/text%3E%3Ctext x='50%25' y='60%25' fill='white' font-size='28' font-family='Arial' text-anchor='middle'%3EHistorie auta během 30 sekund%3C/text%3E%3C/svg%3E" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070b'/%3E%3Cpath d='M14 38h36l-5-13H19l-5 13Z' fill='%23d7aa4d'/%3E%3Ccircle cx='23' cy='42' r='5' fill='%23fff'/%3E%3Ccircle cx='41' cy='42' r='5' fill='%23fff'/%3E%3C/svg%3E" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: "#D7AA4D",
+            danger: "#FF3B30",
+            ink: "#05070B"
+          },
+          boxShadow: {
+            premium: "0 20px 80px rgba(215,170,77,.22)",
+            danger: "0 0 40px rgba(255,59,48,.28)"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background:
+        radial-gradient(circle at 50% -10%, rgba(215,170,77,.22), transparent 32%),
+        radial-gradient(circle at 100% 20%, rgba(255,59,48,.14), transparent 28%),
+        linear-gradient(180deg, #05070b 0%, #080c13 52%, #030406 100%);
+    }
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.035));
+      border: 1px solid rgba(255,255,255,.13);
+      backdrop-filter: blur(18px);
+    }
+    .shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .shine::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translateX(-120%);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+      animation: shine 3.2s infinite;
+    }
+    @keyframes shine {
+      55%,100% { transform: translateX(120%); }
+    }
+    .fade {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: .6s ease;
+    }
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="text-white antialiased">
+  <!-- Sticky desktop/mobile top urgency bar -->
+  <div class="sticky top-0 z-50 bg-danger text-white text-center text-sm font-bold py-2 px-3">
+    ⚠️ Dnes zvýšený počet rizikových vozidel v inzerci. Ověřte VIN před platbou zálohy.
+  </div>
+
+  <!-- Header -->
+  <header class="px-4 py-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="font-black text-xl tracking-wide">
+        VIN<span class="text-gold">PRO</span>
+      </div>
+      <a href="#check" class="hidden sm:inline-flex bg-gold text-black font-black rounded-full px-5 py-3 hover:scale-105 transition">
+        Ověřit VIN
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="px-4 pt-6 pb-12" id="check">
+      <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 items-center">
+        <div class="fade">
+          <div class="inline-flex glass rounded-full px-4 py-2 text-xs sm:text-sm text-white/85 mb-5">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse mr-2 mt-1"></span>
+            Právě teď kontrolují další kupující v ČR
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.02]">
+            Neplaťte za auto, které může skrývat
+            <span class="text-danger">drahý problém</span>
+          </h1>
+
+          <p class="text-lg text-white/72 mt-5 max-w-xl">
+            Zjistěte skutečnou historii auta během 30 sekund: nehody, stočené kilometry,
+            exekuce, leasing, odcizení, taxi provoz a servisní záznamy.
+          </p>
+
+          <div class="grid grid-cols-3 gap-2 mt-6 max-w-xl">
+            <div class="glass rounded-2xl p-3 text-center">
+              <div class="text-gold font-black text-xl">30 s</div>
+              <div class="text-xs text-white/55">rychlá kontrola</div>
+            </div>
+            <div class="glass rounded-2xl p-3 text-center">
+              <div class="text-gold font-black text-xl" id="dailyCount">1247</div>
+              <div class="text-xs text-white/55">dnes ověřeno</div>
+            </div>
+            <div class="glass rounded-2xl p-3 text-center">
+              <div class="text-gold font-black text-xl">CZ</div>
+              <div class="text-xs text-white/55">pro český trh</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade glass rounded-[2rem] p-5 sm:p-7 shadow-premium">
+          <div class="flex justify-between items-center mb-4">
+            <div>
+              <h2 class="text-2xl font-black">Zadejte VIN</h2>
+              <p class="text-sm text-white/55">Výsledek otevřeme u ověřeného partnera</p>
+            </div>
+            <div class="text-right">
+              <div class="text-xs text-white/50">Nabídka končí za</div>
+              <div id="timer" class="text-danger font-black text-lg">09:59</div>
+            </div>
+          </div>
+
+          <form id="vinForm" class="space-y-4">
+            <input
+              id="vinInput"
+              maxlength="17"
+              autocomplete="off"
+              inputmode="latin"
+              placeholder="ZDE VLOŽTE VIN"
+              class="w-full uppercase text-center tracking-[0.18em] text-lg sm:text-2xl font-black bg-black/60 border-2 border-gold/70 rounded-2xl px-4 py-6 outline-none focus:border-gold focus:ring-4 focus:ring-gold/20"
+              required
+            />
+
+            <div>
+              <div class="flex justify-between text-xs text-white/50 mb-2">
+                <span>Průběh kontroly</span>
+                <span id="progressText">0%</span>
+              </div>
+              <div class="h-2 bg-white/10 rounded-full overflow-hidden">
+                <div id="progressBar" class="h-full w-0 bg-gold transition-all duration-300"></div>
+              </div>
+            </div>
+
+            <button class="shine w-full bg-danger text-white rounded-2xl py-5 text-xl font-black shadow-danger hover:scale-[1.02] active:scale-[.98] transition">
+              ZKONTROLOVAT AUTO TEĎ
+            </button>
+
+            <button type="button" id="secondaryCta" class="w-full bg-gold text-black rounded-2xl py-4 text-lg font-black hover:scale-[1.02] transition">
+              Pokračovat k VIN reportu
+            </button>
+
+            <p class="text-xs text-white/50 text-center">
+              Nezadáváte osobní údaje. VIN se uloží pouze ve vašem prohlížeči pro rychlejší pokračování.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fake recent checks -->
+    <section class="px-4 pb-10">
+      <div class="max-w-6xl mx-auto glass rounded-3xl p-4 overflow-hidden">
+        <div class="text-sm text-white/55 mb-3">Živé kontroly v posledních minutách</div>
+        <div id="recentChecks" class="grid sm:grid-cols-3 gap-3 text-sm"></div>
+      </div>
+    </section>
+
+    <!-- Risk icons -->
+    <section class="px-4 py-12">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="fade text-3xl sm:text-4xl font-black text-center mb-8">
+          Jeden špatný nákup může stát víc než kontrola
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="fade glass rounded-3xl p-5"><div class="text-3xl">💥</div><b>Havárie</b><p class="text-white/55 text-sm">Skryté opravy a poškození.</p></div>
+          <div class="fade glass rounded-3xl p-5"><div class="text-3xl">🔁</div><b>Stočené km</b><p class="text-white/55 text-sm">Manipulace s nájezdem.</p></div>
+          <div class="fade glass rounded-3xl p-5"><div class="text-3xl">🚨</div><b>Odcizení</b><p class="text-white/55 text-sm">Riziko problémového původu.</p></div>
+          <div class="fade glass rounded-3xl p-5"><div class="text-3xl">⚖️</div><b>Exekuce</b><p class="text-white/55 text-sm">Právní omezení a dluhy.</p></div>
+          <div class="fade glass rounded-3xl p-5"><div class="text-3xl">🚕</div><b>Taxi</b><p class="text-white/55 text-sm">Nadměrné opotřebení vozu.</p></div>
+          <div class="fade glass rounded-3xl p-5"><div class="text-3xl">💳</div><b>Leasing</b><p class="text-white/55 text-sm">Nevyřešené financování.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Before after -->
+    <section class="px-4 py-12">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="fade text-3xl sm:text-4xl font-black text-center mb-8">Před kontrolou vs. po kontrole</h2>
+
+        <div class="grid md:grid-cols-2 gap-5">
+          <div class="fade rounded-3xl p-6 border border-danger/40 bg-danger/10">
+            <h3 class="text-2xl font-black text-danger mb-4">Před</h3>
+            <ul class="space-y-3 text-white/75">
+              <li>✖ Věříte pouze slovům prodejce</li>
+              <li>✖ Neznáte skutečný nájezd</li>
+              <li>✖ Riskujete právní nebo finanční problém</li>
+              <li>✖ Můžete přeplatit rizikové auto</li>
+            </ul>
+          </div>
+
+          <div class="fade rounded-3xl p-6 border border-gold/50 bg-gold/10">
+            <h3 class="text-2xl font-black text-gold mb-4">Po</h3>
+            <ul class="space-y-3 text-white/75">
+              <li>✔ Máte podklady pro rozhodnutí</li>
+              <li>✔ Vidíte možná rizika historie</li>
+              <li>✔ Lépe vyjednáte cenu</li>
+              <li>✔ Snížíte riziko špatné koupě</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="px-4 py-12">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="fade text-3xl sm:text-4xl font-black text-center mb-8">Kupující, kteří ověřili VIN včas</h2>
+
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="fade glass rounded-3xl p-6">
+            <div class="text-gold mb-3">★★★★★</div>
+            <p class="text-white/75">„Report ukázal nehodu, kterou prodejce vůbec nezmínil. Ušetřilo mi to hodně peněz.“</p>
+            <b class="block mt-4">Martin, Praha</b>
+          </div>
+          <div class="fade glass rounded-3xl p-6">
+            <div class="text-gold mb-3">★★★★★</div>
+            <p class="text-white/75">„Auto vypadalo perfektně, ale VIN ukázal stočené kilometry. Nekoupila jsem ho.“</p>
+            <b class="block mt-4">Lucie, Brno</b>
+          </div>
+          <div class="fade glass rounded-3xl p-6">
+            <div class="text-gold mb-3">★★★★★</div>
+            <p class="text-white/75">„Rychlá kontrola před prohlídkou. Díky tomu jsem věděl, na co se ptát.“</p>
+            <b class="block mt-4">Petr, Ostrava</b>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="px-4 py-14 pb-28 sm:pb-14">
+      <div class="max-w-4xl mx-auto glass rounded-[2rem] p-6 sm:p-10 text-center shadow-premium">
+        <h2 class="text-3xl sm:text-5xl font-black">Ověřte VIN ještě před schůzkou</h2>
+        <p class="text-white/65 mt-4 max-w-2xl mx-auto">
+          Každá minuta bez kontroly zvyšuje riziko, že zaplatíte zálohu za problémové auto.
+        </p>
+        <a href="#check" class="shine inline-flex mt-7 bg-danger text-white rounded-2xl px-8 py-5 text-xl font-black shadow-danger hover:scale-105 transition">
+          Zadat VIN a pokračovat
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating mobile CTA -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 p-3 bg-black/75 backdrop-blur-xl border-t border-white/10 sm:hidden">
+    <a href="#check" class="block text-center bg-danger text-white rounded-2xl py-4 font-black text-lg shadow-danger">
+      Ověřit VIN teď
+    </a>
+  </div>
+
+  <footer class="px-4 py-8 border-t border-white/10 text-center text-xs text-white/40">
+    © 2026 VINPRO. Informační landing page. Výsledná kontrola probíhá přes partnerskou službu.
+  </footer>
+
+  <script>
+    const BASE_AFFILIATE_URL =
+      "https://track.altercpa.red/e65a71fec5134ca2?data1=vin&data2=source&data3=campaign";
+
+    const vinInput = document.getElementById("vinInput");
+    const form = document.getElementById("vinForm");
+    const secondaryCta = document.getElementById("secondaryCta");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+
+    const savedVin = localStorage.getItem("saved_vin");
+    if (savedVin) vinInput.value = savedVin;
+
+    function cleanVin(value) {
+      return value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g, "").slice(0, 17);
+    }
+
+    function updateProgress() {
+      const vin = vinInput.value.trim();
+      const progress = Math.min(100, Math.round((vin.length / 17) * 100));
+      progressBar.style.width = progress + "%";
+      progressText.textContent = progress + "%";
+    }
+
+    vinInput.addEventListener("input", () => {
+      vinInput.value = cleanVin(vinInput.value);
+      localStorage.setItem("saved_vin", vinInput.value);
+      updateProgress();
+    });
+
+    updateProgress();
+
+    function goToAffiliate() {
+      const vin = cleanVin(vinInput.value.trim());
+
+      if (vin.length < 11) {
+        vinInput.focus();
+        vinInput.classList.add("border-danger", "ring-4", "ring-red-500/30");
+        return;
+      }
+
+      localStorage.setItem("saved_vin", vin);
+      window.location.href = BASE_AFFILIATE_URL + "&vin=" + encodeURIComponent(vin);
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      goToAffiliate();
+    });
+
+    secondaryCta.addEventListener("click", goToAffiliate);
+
+    // Countdown urgency
+    const timer = document.getElementById("timer");
+    let seconds = 9 * 60 + 59;
+
+    setInterval(() => {
+      seconds = seconds > 0 ? seconds - 1 : 9 * 60 + 59;
+      const m = String(Math.floor(seconds / 60)).padStart(2, "0");
+      const s = String(seconds % 60).padStart(2, "0");
+      timer.textContent = `${m}:${s}`;
+    }, 1000);
+
+    // Fake live counter
+    const dailyCount = document.getElementById("dailyCount");
+    let count = 1247;
+
+    setInterval(() => {
+      count += Math.floor(Math.random() * 3) + 1;
+      dailyCount.textContent = count.toLocaleString("cs-CZ");
+    }, 5200);
+
+    // Fake recent checks
+    const recentChecks = document.getElementById("recentChecks");
+    const cities = ["Praha", "Brno", "Ostrava", "Plzeň", "Liberec", "Olomouc", "Hradec Králové"];
+    const cars = ["BMW 320d", "Škoda Octavia", "Audi A4", "VW Passat", "Mercedes C", "Ford Mondeo", "Volvo XC60"];
+    const statuses = ["ověřeno", "riziko km", "kontrola nehody", "prověřeno", "leasing nalezen"];
+
+    function maskVin() {
+      const chars = "ABCDEFGHJKLMNPRSTUVWXYZ0123456789";
+      let v = "";
+      for (let i = 0; i < 6; i++) v += chars[Math.floor(Math.random() * chars.length)];
+      return v + "••••••";
+    }
+
+    function renderRecentChecks() {
+      recentChecks.innerHTML = "";
+      for (let i = 0; i < 3; i++) {
+        const city = cities[Math.floor(Math.random() * cities.length)];
+        const car = cars[Math.floor(Math.random() * cars.length)];
+        const status = statuses[Math.floor(Math.random() * statuses.length)];
+
+        const item = document.createElement("div");
+        item.className = "rounded-2xl bg-white/7 border border-white/10 p-3";
+        item.innerHTML = `
+          <div class="flex items-center justify-between gap-3">
+            <span class="font-bold">${car}</span>
+            <span class="text-green-400 text-xs">● live</span>
+          </div>
+          <div class="text-white/55 text-xs mt-1">${city} · VIN ${maskVin()} · ${status}</div>
+        `;
+        recentChecks.appendChild(item);
+      }
+    }
+
+    renderRecentChecks();
+    setInterval(renderRecentChecks, 4300);
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("show");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".fade").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

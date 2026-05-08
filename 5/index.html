@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VIN Kontrola | Historie auta za 30 sekund</title>
+  <meta name="description" content="Zjistěte skutečnou historii auta během 30 sekund. Nehody, kilometry, leasing, exekuce, odcizení a servisní historie." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#D6A84F',
+            dark: '#07090D'
+          },
+          boxShadow: {
+            glow: '0 0 40px rgba(214,168,79,.25)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      background:
+        radial-gradient(circle at top, rgba(214,168,79,.18), transparent 35%),
+        linear-gradient(180deg, #07090D 0%, #0B0F17 45%, #050608 100%);
+    }
+    .glass {
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: .7s ease;
+    }
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="text-white font-sans overflow-x-hidden">
+  <header class="px-5 py-5">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <div class="text-xl font-bold tracking-wide">
+        VIN<span class="text-gold">Check</span>
+      </div>
+      <div class="hidden sm:flex text-sm text-white/70 gap-4">
+        <span>Česká republika</span>
+        <span>Rychlá kontrola</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="px-5 pt-8 pb-16">
+      <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+        <div class="fade-up">
+          <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-sm text-white/80 mb-5">
+            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+            Dnes zkontrolováno <strong id="counter" class="text-white">1247</strong> vozidel
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+            Zjistěte skutečnou historii auta během
+            <span class="text-gold">30 sekund</span>
+          </h1>
+
+          <p class="mt-5 text-lg text-white/70 max-w-xl">
+            Skryté nehody, stočené kilometry, exekuce, leasing, poškození a historie servisu.
+          </p>
+
+          <div class="mt-8 glass rounded-3xl p-5 sm:p-6 shadow-glow">
+            <form id="vinForm" class="space-y-4">
+              <label for="vin" class="block text-sm text-white/70">
+                Zadejte VIN číslo vozidla
+              </label>
+
+              <input
+                id="vin"
+                type="text"
+                maxlength="17"
+                placeholder="např. WBA3A5C56DF123456"
+                required
+                class="w-full text-center uppercase tracking-[0.18em] text-lg sm:text-xl bg-black/50 border border-gold/50 rounded-2xl px-5 py-5 outline-none focus:ring-4 focus:ring-gold/20 focus:border-gold"
+              />
+
+              <button
+                type="submit"
+                class="w-full rounded-2xl bg-gold text-black font-extrabold text-lg py-5 hover:scale-[1.02] active:scale-[.98] transition shadow-glow"
+              >
+                Zkontrolovat VIN nyní
+              </button>
+
+              <p class="text-xs text-white/50 text-center">
+                Kontrola probíhá přes ověřeného partnera. Bez instalace, ihned online.
+              </p>
+            </form>
+          </div>
+        </div>
+
+        <div class="fade-up glass rounded-[2rem] p-6 lg:p-8 shadow-glow">
+          <div class="aspect-[4/3] rounded-[1.5rem] bg-gradient-to-br from-white/10 to-black/70 border border-white/10 flex items-center justify-center">
+            <div class="text-center px-6">
+              <div class="text-7xl mb-4">🏎️</div>
+              <h2 class="text-2xl font-bold">Prémiová kontrola historie</h2>
+              <p class="text-white/60 mt-3">
+                Odhalte rizika dříve, než zaplatíte zálohu nebo podepíšete smlouvu.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3 mt-5 text-center text-xs">
+            <div class="glass rounded-xl p-3">SSL zabezpečení</div>
+            <div class="glass rounded-xl p-3">Rychlý výsledek</div>
+            <div class="glass rounded-xl p-3">EU data</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="px-5 py-14">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="fade-up text-3xl font-bold text-center mb-10">
+          Proč ověřit VIN před koupí auta?
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="fade-up glass rounded-3xl p-6">
+            <h3 class="text-xl font-bold text-gold">Vyhnete se drahým chybám</h3>
+            <p class="text-white/65 mt-3">Skryté poškození nebo právní problém může znamenat ztrátu desítek tisíc Kč.</p>
+          </div>
+          <div class="fade-up glass rounded-3xl p-6">
+            <h3 class="text-xl font-bold text-gold">Silnější vyjednávací pozice</h3>
+            <p class="text-white/65 mt-3">Report vám pomůže odhalit nesrovnalosti a vyjednat férovější cenu.</p>
+          </div>
+          <div class="fade-up glass rounded-3xl p-6">
+            <h3 class="text-xl font-bold text-gold">Rychlé rozhodnutí</h3>
+            <p class="text-white/65 mt-3">Stačí VIN číslo a během chvíle víte, zda má vůz rizikovou historii.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RISKS -->
+    <section class="px-5 py-14">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="fade-up text-3xl font-bold text-center mb-10">
+          Co může kontrola odhalit?
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="fade-up glass rounded-2xl p-5 text-center text-lg">⚠️<br>havárie</div>
+          <div class="fade-up glass rounded-2xl p-5 text-center text-lg">🔁<br>stočené km</div>
+          <div class="fade-up glass rounded-2xl p-5 text-center text-lg">🚨<br>odcizení</div>
+          <div class="fade-up glass rounded-2xl p-5 text-center text-lg">⚖️<br>exekuce</div>
+          <div class="fade-up glass rounded-2xl p-5 text-center text-lg">🚕<br>taxi</div>
+          <div class="fade-up glass rounded-2xl p-5 text-center text-lg">💳<br>leasing</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="px-5 py-14">
+      <div class="max-w-5xl mx-auto glass rounded-[2rem] p-7 sm:p-10 text-center fade-up">
+        <h2 class="text-3xl font-bold">Důvěryhodné ověření před nákupem</h2>
+        <p class="text-white/65 mt-4 max-w-2xl mx-auto">
+          VIN kontrola pomáhá kupujícím v Česku rychle prověřit původ, stav a možná rizika vozidla.
+        </p>
+
+        <div class="grid sm:grid-cols-3 gap-4 mt-8">
+          <div class="rounded-2xl bg-white/8 p-4">✅ Ověřený partner</div>
+          <div class="rounded-2xl bg-white/8 p-4">🔒 Bezpečný přechod</div>
+          <div class="rounded-2xl bg-white/8 p-4">⚡ Výsledek online</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="px-5 py-14">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="fade-up text-3xl font-bold text-center mb-10">Zkušenosti uživatelů</h2>
+
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="fade-up glass rounded-3xl p-6">
+            <p class="text-white/75">„Kontrola ukázala starou nehodu, o které prodejce mlčel.“</p>
+            <strong class="block mt-4 text-gold">Martin, Praha</strong>
+          </div>
+          <div class="fade-up glass rounded-3xl p-6">
+            <p class="text-white/75">„Díky reportu jsem nekoupila auto se stočenými kilometry.“</p>
+            <strong class="block mt-4 text-gold">Lucie, Brno</strong>
+          </div>
+          <div class="fade-up glass rounded-3xl p-6">
+            <p class="text-white/75">„Rychlé, jednoduché a před prohlídkou auta velmi užitečné.“</p>
+            <strong class="block mt-4 text-gold">Petr, Ostrava</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="px-5 py-14">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="fade-up text-3xl font-bold text-center mb-10">Časté otázky</h2>
+
+        <div class="space-y-4">
+          <details class="fade-up glass rounded-2xl p-5">
+            <summary class="font-bold cursor-pointer">Kde najdu VIN číslo?</summary>
+            <p class="text-white/65 mt-3">VIN najdete v technickém průkazu, na karoserii vozidla nebo za čelním sklem.</p>
+          </details>
+
+          <details class="fade-up glass rounded-2xl p-5">
+            <summary class="font-bold cursor-pointer">Jak dlouho kontrola trvá?</summary>
+            <p class="text-white/65 mt-3">Zadání VIN trvá několik sekund a výsledek je dostupný online přes partnerskou službu.</p>
+          </details>
+
+          <details class="fade-up glass rounded-2xl p-5">
+            <summary class="font-bold cursor-pointer">Je kontrola vhodná před koupí ojetiny?</summary>
+            <p class="text-white/65 mt-3">Ano. Pomáhá odhalit rizika, která nemusí být při běžné prohlídce vidět.</p>
+          </details>
+        </div>
+
+        <a href="#vin" class="fade-up mt-8 block text-center rounded-2xl bg-gold text-black font-extrabold text-lg py-5 hover:scale-[1.02] transition">
+          Prověřit auto podle VIN
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="px-5 py-8 border-t border-white/10">
+    <div class="max-w-6xl mx-auto text-center text-sm text-white/45">
+      © 2026 VINCheck. Informační landing page. Kontrola probíhá přes affiliate partnera.
+    </div>
+  </footer>
+
+  <script>
+    const AFFILIATE_URL = "https://example.com/affiliate?vin=";
+
+    const form = document.getElementById("vinForm");
+    const vinInput = document.getElementById("vin");
+
+    vinInput.addEventListener("input", () => {
+      vinInput.value = vinInput.value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g, "");
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const vin = vinInput.value.trim();
+
+      if (vin.length < 11) {
+        vinInput.focus();
+        vinInput.classList.add("ring-4", "ring-red-500/30", "border-red-500");
+        return;
+      }
+
+      window.location.href = AFFILIATE_URL + encodeURIComponent(vin);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("show");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+    const counter = document.getElementById("counter");
+    let count = 1247;
+    setInterval(() => {
+      count += Math.floor(Math.random() * 3);
+      counter.textContent = count.toLocaleString("cs-CZ");
+    }, 4500);
+  </script>
+</body>
+</html>
