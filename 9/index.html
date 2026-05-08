@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>Koupil ojeté auto a po týdnu řešil opravy za 87 000 Kč | VIN kontrola</title>
+  <meta name="description" content="Příběh kupujícího z Česka, který po koupi ojetého auta objevil skryté vady. Zjistěte, proč se vyplatí ověřit VIN před nákupem." />
+  <meta name="keywords" content="VIN kontrola, ověření VIN, historie auta, koupě ojetého auta, stočené kilometry, havárie auta, ojetina Česko" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#f6f1e8" />
+  <meta name="author" content="Auto Report CZ" />
+
+  <meta property="og:title" content="Koupil ojeté auto a po týdnu řešil opravy za 87 000 Kč" />
+  <meta property="og:description" content="Skutečný typ příběhu, který se může stát každému kupujícímu. Ověření VIN mohlo odhalit rizika předem." />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="cs_CZ" />
+  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='100%25' height='100%25' fill='%23f6f1e8'/%3E%3Crect x='80' y='80' width='1040' height='470' rx='36' fill='%23111111'/%3E%3Ctext x='50%25' y='44%25' fill='%23d6a84f' font-size='58' font-family='Arial' font-weight='700' text-anchor='middle'%3ESkrytá historie auta%3C/text%3E%3Ctext x='50%25' y='56%25' fill='white' font-size='30' font-family='Arial' text-anchor='middle'%3EOvěřte VIN před nákupem%3C/text%3E%3C/svg%3E" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111111'/%3E%3Cpath d='M13 39h38l-5-14H18l-5 14Z' fill='%23d6a84f'/%3E%3Ccircle cx='23' cy='43' r='5' fill='white'/%3E%3Ccircle cx='41' cy='43' r='5' fill='white'/%3E%3C/svg%3E" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: "#F6F1E8",
+            ink: "#111111",
+            muted: "#6D665E",
+            gold: "#C8943F",
+            wine: "#7B1E1E"
+          },
+          boxShadow: {
+            soft: "0 20px 70px rgba(17,17,17,.10)",
+            gold: "0 18px 55px rgba(200,148,63,.25)"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(200,148,63,.16), transparent 34%),
+        linear-gradient(180deg, #f6f1e8 0%, #fffaf1 45%, #f3ecdf 100%);
+      color: #111;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    .article p {
+      line-height: 1.85;
+      color: #332f2a;
+    }
+    .fade {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: .65s ease;
+    }
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .glass {
+      background: rgba(255,255,255,.64);
+      border: 1px solid rgba(255,255,255,.75);
+      backdrop-filter: blur(18px);
+    }
+    .dark-card {
+      background:
+        radial-gradient(circle at top right, rgba(200,148,63,.24), transparent 35%),
+        linear-gradient(145deg, #111 0%, #222 100%);
+    }
+    .btn-shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shine:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translateX(-120%);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+      animation: shine 3.4s infinite;
+    }
+    @keyframes shine {
+      60%, 100% { transform: translateX(120%); }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Koupil ojeté auto a po týdnu řešil opravy za 87 000 Kč",
+    "description": "Příběh kupujícího, který po koupi ojetého auta objevil skryté vady. VIN kontrola může pomoci odhalit rizika před nákupem.",
+    "inLanguage": "cs-CZ",
+    "author": {
+      "@type": "Organization",
+      "name": "Auto Report CZ"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Top bar -->
+  <div class="sticky top-0 z-50 bg-ink text-white border-b border-white/10">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <div class="text-sm font-bold tracking-wide">
+        AUTO<span class="text-gold">REPORT</span>.cz
+      </div>
+      <a href="#vin-check" class="text-xs sm:text-sm bg-gold text-black font-black rounded-full px-4 py-2 hover:scale-105 transition">
+        Ověřit VIN
+      </a>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero article -->
+    <section class="px-4 pt-8 pb-6">
+      <article class="max-w-5xl mx-auto">
+        <div class="fade max-w-3xl">
+          <div class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-wine font-black mb-4">
+            <span class="w-2 h-2 rounded-full bg-wine"></span>
+            Příběh kupujícího
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.04]">
+            Koupil ojeté auto. Po týdnu zjistil, že opravy mohou stát
+            <span class="text-wine">87 000 Kč</span>.
+          </h1>
+
+          <p class="mt-5 text-lg sm:text-xl text-muted max-w-2xl leading-relaxed">
+            Na první pohled vypadalo perfektně. Čistý interiér, rozumná cena, přesvědčivý prodejce.
+            Jenže skutečná historie auta vyšla najevo až příliš pozdě.
+          </p>
+
+          <div class="mt-6 flex flex-wrap gap-3 text-sm text-muted">
+            <span class="glass rounded-full px-4 py-2">Praha · ojetý vůz</span>
+            <span class="glass rounded-full px-4 py-2">5 minut čtení</span>
+            <span class="glass rounded-full px-4 py-2">Aktualizováno 2026</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Car image -->
+    <section class="px-4 py-6">
+      <div class="fade max-w-5xl mx-auto rounded-[2rem] overflow-hidden shadow-soft bg-ink">
+        <div class="relative aspect-[16/10] sm:aspect-[16/8]">
+          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1200 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrační foto prémiového automobilu">
+            <defs>
+              <linearGradient id="bg" x1="0" x2="1">
+                <stop offset="0" stop-color="#111"/>
+                <stop offset="1" stop-color="#2b2418"/>
+              </linearGradient>
+              <linearGradient id="car" x1="0" x2="1">
+                <stop offset="0" stop-color="#202020"/>
+                <stop offset=".55" stop-color="#3a3a3a"/>
+                <stop offset="1" stop-color="#111"/>
+              </linearGradient>
+              <filter id="blur">
+                <feGaussianBlur stdDeviation="18"/>
+              </filter>
+            </defs>
+
+            <rect width="1200" height="620" fill="url(#bg)"/>
+            <circle cx="930" cy="110" r="250" fill="#c8943f" opacity=".18" filter="url(#blur)"/>
+            <path d="M95 470 C250 400, 470 380, 690 410 C865 432, 980 438, 1110 410" stroke="#c8943f" stroke-width="3" opacity=".35" fill="none"/>
+
+            <g transform="translate(145 255)">
+              <path d="M95 180 L155 82 C178 45 216 25 260 25 H600 C658 25 702 52 738 95 L805 175 C825 199 814 230 779 230 H125 C88 230 74 206 95 180Z" fill="url(#car)"/>
+              <path d="M218 78 H398 L360 148 H166 L218 78Z" fill="#dfe8ef" opacity=".18"/>
+              <path d="M430 78 H605 C646 78 680 97 706 130 L719 148 H394 L430 78Z" fill="#dfe8ef" opacity=".14"/>
+              <rect x="90" y="160" width="725" height="78" rx="38" fill="#141414"/>
+              <circle cx="220" cy="235" r="62" fill="#090909"/>
+              <circle cx="220" cy="235" r="31" fill="#c9c9c9"/>
+              <circle cx="680" cy="235" r="62" fill="#090909"/>
+              <circle cx="680" cy="235" r="31" fill="#c9c9c9"/>
+              <rect x="710" y="172" width="82" height="18" rx="9" fill="#c8943f"/>
+              <rect x="118" y="176" width="74" height="16" rx="8" fill="#ffffff" opacity=".65"/>
+            </g>
+
+            <text x="70" y="92" fill="#fff" font-size="38" font-family="Arial" font-weight="700">Na fotkách vypadalo bezchybně.</text>
+            <text x="70" y="136" fill="#d6a84f" font-size="24" font-family="Arial">Historie ale vyprávěla jiný příběh.</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Article body -->
+    <section class="px-4 py-8">
+      <div class="max-w-5xl mx-auto grid lg:grid-cols-[1fr_340px] gap-8 items-start">
+        <article class="article space-y-8">
+          <div class="fade bg-white rounded-[1.75rem] p-6 sm:p-8 shadow-soft">
+            <h2 class="text-2xl sm:text-3xl font-black mb-4">„Vypadalo to jako výhodná koupě.“</h2>
+            <p>
+              Petr z Prahy hledal rodinné auto několik týdnů. Když našel zachovalý vůz s údajně pravidelným servisem
+              a nájezdem 142 000 km, měl pocit, že konečně narazil na dobrou nabídku. Prodejce působil klidně,
+              auto bylo naleštěné a zkušební jízda neukázala nic zásadního.
+            </p>
+            <p class="mt-4">
+              Rozhodnutí padlo rychle. Záloha, podpis smlouvy a pocit, že má hotovo. Jenže už po pár dnech se objevily
+              první varovné signály: vibrace při brzdění, zvláštní zvuk od přední nápravy a chybová hláška motoru.
+            </p>
+          </div>
+
+          <div class="fade bg-white rounded-[1.75rem] p-6 sm:p-8 shadow-soft">
+            <h2 class="text-2xl sm:text-3xl font-black mb-4">Problémy po koupi</h2>
+
+            <div class="grid sm:grid-cols-3 gap-4 mb-6">
+              <div class="rounded-2xl bg-red-50 border border-red-100 p-4">
+                <div class="text-sm text-muted">Diagnostika motoru</div>
+                <div class="text-2xl font-black text-wine">12 500 Kč</div>
+              </div>
+              <div class="rounded-2xl bg-red-50 border border-red-100 p-4">
+                <div class="text-sm text-muted">Podvozek a brzdy</div>
+                <div class="text-2xl font-black text-wine">34 000 Kč</div>
+              </div>
+              <div class="rounded-2xl bg-red-50 border border-red-100 p-4">
+                <div class="text-sm text-muted">Lak a karoserie</div>
+                <div class="text-2xl font-black text-wine">40 500 Kč</div>
+              </div>
+            </div>
+
+            <p>
+              Servisní technik později upozornil na nerovnoměrné spáry, rozdílný odstín laku a stopy po opravě přední části.
+              Celkový odhad oprav se vyšplhal přibližně na <strong>87 000 Kč</strong>. Problém nebyl jen v ceně oprav,
+              ale v tom, že kupující o minulosti auta nevěděl předem.
+            </p>
+          </div>
+
+          <div class="fade dark-card text-white rounded-[1.75rem] p-6 sm:p-8 shadow-soft">
+            <div class="text-gold text-sm uppercase tracking-[0.16em] font-black mb-3">Zlomový moment</div>
+            <h2 class="text-2xl sm:text-3xl font-black mb-4">Jak se skryté vady objevily</h2>
+            <p class="text-white/75">
+              Až dodatečné prověření historie podle VIN ukázalo nesrovnalosti. V minulosti se objevily záznamy
+              naznačující poškození, servisní zásahy a možné rozdíly v uváděném nájezdu.
+            </p>
+            <p class="text-white/75 mt-4">
+              Přitom stačilo VIN ověřit ještě před schůzkou. Zabralo by to méně než minutu a Petr by měl mnohem silnější
+              pozici pro rozhodnutí i vyjednávání.
+            </p>
+          </div>
+
+          <!-- VIN form inline -->
+          <div id="vin-check" class="fade rounded-[2rem] p-5 sm:p-8 shadow-gold bg-ink text-white">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-5">
+              <div>
+                <div class="text-gold text-sm uppercase tracking-[0.16em] font-black mb-2">Ověření před nákupem</div>
+                <h2 class="text-3xl sm:text-4xl font-black">Zkontrolujte VIN auta</h2>
+                <p class="text-white/62 mt-2">Zadejte VIN a pokračujte k online reportu přes ověřeného partnera.</p>
+              </div>
+              <div class="rounded-2xl bg-white/8 px-4 py-3 text-sm">
+                Dnes ověřeno: <strong id="todayCounter" class="text-gold">1247</strong>
+              </div>
+            </div>
+
+            <form id="vinForm" class="space-y-4">
+              <input
+                id="vinInput"
+                maxlength="17"
+                autocomplete="off"
+                inputmode="latin"
+                placeholder="ZDE ZADEJTE VIN"
+                required
+                class="w-full uppercase text-center tracking-[0.18em] text-lg sm:text-2xl font-black bg-white/8 border-2 border-gold/60 rounded-2xl px-4 py-6 outline-none focus:border-gold focus:ring-4 focus:ring-gold/20"
+              />
+
+              <div>
+                <div class="flex justify-between text-xs text-white/50 mb-2">
+                  <span>Připravenost VIN</span>
+                  <span id="progressText">0%</span>
+                </div>
+                <div class="h-2 rounded-full bg-white/10 overflow-hidden">
+                  <div id="progressBar" class="h-full bg-gold w-0 transition-all duration-300"></div>
+                </div>
+              </div>
+
+              <button class="btn-shine w-full rounded-2xl bg-gold text-black font-black text-lg sm:text-xl py-5 hover:scale-[1.02] active:scale-[.98] transition">
+                Ověřit historii vozidla
+              </button>
+
+              <p class="text-xs text-white/45 text-center">
+                VIN se automaticky uloží pouze ve vašem prohlížeči a předá se do partnerského formuláře.
+              </p>
+            </form>
+          </div>
+
+          <div class="fade bg-white rounded-[1.75rem] p-6 sm:p-8 shadow-soft">
+            <h2 class="text-2xl sm:text-3xl font-black mb-5">Na co si dát pozor</h2>
+
+            <div class="space-y-4">
+              <div class="flex gap-4">
+                <div class="w-9 h-9 shrink-0 rounded-full bg-wine text-white grid place-items-center font-black">1</div>
+                <div>
+                  <h3 class="font-black">Podezřele výhodná cena</h3>
+                  <p class="text-sm">Nízká cena může zakrývat nehodu, vysoký nájezd nebo právní problém.</p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div class="w-9 h-9 shrink-0 rounded-full bg-wine text-white grid place-items-center font-black">2</div>
+                <div>
+                  <h3 class="font-black">Nejasná servisní historie</h3>
+                  <p class="text-sm">Chybějící záznamy nemusí být náhoda. U ojetin je historie často důležitější než vzhled.</p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div class="w-9 h-9 shrink-0 rounded-full bg-wine text-white grid place-items-center font-black">3</div>
+                <div>
+                  <h3 class="font-black">Tlak na rychlé rozhodnutí</h3>
+                  <p class="text-sm">Věty typu „dnes mám dalšího zájemce“ jsou důvod zpomalit a ověřit VIN.</p>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <div class="w-9 h-9 shrink-0 rounded-full bg-wine text-white grid place-items-center font-black">4</div>
+                <div>
+                  <h3 class="font-black">Rozdílný odstín laku a spáry</h3>
+                  <p class="text-sm">Mohou ukazovat na opravu po havárii, kterou prodejce nezmínil.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonials -->
+          <div class="fade bg-white rounded-[1.75rem] p-6 sm:p-8 shadow-soft">
+            <h2 class="text-2xl sm:text-3xl font-black mb-6">Zkušenosti dalších kupujících</h2>
+
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div class="rounded-2xl bg-paper p-4">
+                <div class="text-gold mb-2">★★★★★</div>
+                <p class="text-sm">„VIN report ukázal starou nehodu. Prodejce tvrdil, že auto nikdy bourané nebylo.“</p>
+                <strong class="block mt-3 text-sm">Martin, Praha</strong>
+              </div>
+              <div class="rounded-2xl bg-paper p-4">
+                <div class="text-gold mb-2">★★★★★</div>
+                <p class="text-sm">„Auto jsem chtěla koupit hned. Kontrola ukázala nesrovnalost v kilometrech.“</p>
+                <strong class="block mt-3 text-sm">Lucie, Brno</strong>
+              </div>
+              <div class="rounded-2xl bg-paper p-4">
+                <div class="text-gold mb-2">★★★★★</div>
+                <p class="text-sm">„Díky kontrole jsem měl argument pro snížení ceny. Vyplatilo se.“</p>
+                <strong class="block mt-3 text-sm">Tomáš, Plzeň</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ -->
+          <div class="fade bg-white rounded-[1.75rem] p-6 sm:p-8 shadow-soft">
+            <h2 class="text-2xl sm:text-3xl font-black mb-6">Časté otázky</h2>
+
+            <div class="space-y-3">
+              <details class="rounded-2xl bg-paper p-4">
+                <summary class="font-black cursor-pointer">Kde najdu VIN číslo?</summary>
+                <p class="mt-3 text-sm">VIN najdete v technickém průkazu, za čelním sklem, na karoserii nebo v servisní dokumentaci.</p>
+              </details>
+
+              <details class="rounded-2xl bg-paper p-4">
+                <summary class="font-black cursor-pointer">Má smysl ověřovat i levnější auto?</summary>
+                <p class="mt-3 text-sm">Ano. Právě u levnějších ojetin může skrytý problém výrazně převýšit cenu samotné kontroly.</p>
+              </details>
+
+              <details class="rounded-2xl bg-paper p-4">
+                <summary class="font-black cursor-pointer">Co když VIN nemám?</summary>
+                <p class="mt-3 text-sm">Požádejte prodejce o VIN předem. Pokud ho odmítá poslat, je to varovný signál.</p>
+              </details>
+
+              <details class="rounded-2xl bg-paper p-4">
+                <summary class="font-black cursor-pointer">Je kontrola okamžitá?</summary>
+                <p class="mt-3 text-sm">Po zadání VIN budete přesměrováni na partnerskou stránku, kde probíhá samotné ověření.</p>
+              </details>
+            </div>
+          </div>
+
+          <!-- Final CTA -->
+          <div class="fade dark-card text-white rounded-[2rem] p-6 sm:p-9 text-center shadow-soft">
+            <h2 class="text-3xl sm:text-4xl font-black">Než zaplatíte zálohu, ověřte VIN</h2>
+            <p class="text-white/65 mt-4 max-w-2xl mx-auto">
+              Jedna rychlá kontrola může rozhodnout, jestli kupujete dobré auto, nebo budoucí problém.
+            </p>
+            <a href="#vin-check" class="btn-shine inline-flex mt-7 rounded-2xl bg-gold text-black px-8 py-5 font-black text-lg hover:scale-105 transition">
+              Zadat VIN a pokračovat
+            </a>
+          </div>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="hidden lg:block sticky top-20 space-y-4">
+          <div class="fade glass rounded-[1.5rem] p-5 shadow-soft">
+            <div class="text-xs uppercase tracking-[0.16em] text-muted font-black mb-2">Rychlý souhrn</div>
+            <h3 class="font-black text-xl">Co se v příběhu pokazilo?</h3>
+            <ul class="mt-4 space-y-3 text-sm text-muted">
+              <li>• Auto nebylo ověřeno podle VIN před koupí</li>
+              <li>• Prodejce neřekl celou historii</li>
+              <li>• Opravy vyšly na desítky tisíc Kč</li>
+              <li>• Kontrola mohla odhalit rizika dříve</li>
+            </ul>
+          </div>
+
+          <a href="#vin-check" class="btn-shine block text-center rounded-2xl bg-ink text-white py-4 font-black shadow-soft hover:scale-105 transition">
+            Ověřit moje VIN
+          </a>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobile floating CTA -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 p-3 bg-white/80 backdrop-blur-xl border-t border-black/10 lg:hidden">
+    <a href="#vin-check" class="block text-center rounded-2xl bg-ink text-white py-4 font-black shadow-soft">
+      Ověřit VIN před koupí
+    </a>
+  </div>
+
+  <footer class="px-4 pt-8 pb-24 lg:pb-8 text-center text-xs text-muted">
+    <div class="max-w-5xl mx-auto border-t border-black/10 pt-6">
+      © 2026 AutoReport.cz. Informační článek. Ověření probíhá přes partnerskou službu.
+    </div>
+  </footer>
+
+  <script>
+    const BASE_AFFILIATE_URL =
+      "https://track.altercpa.red/e65a71fec5134ca2?data1=vin&data2=source&data3=campaign";
+
+    const vinInput = document.getElementById("vinInput");
+    const vinForm = document.getElementById("vinForm");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+    const todayCounter = document.getElementById("todayCounter");
+
+    const savedVin = localStorage.getItem("saved_vin_story");
+    if (savedVin) vinInput.value = savedVin;
+
+    function cleanVin(value) {
+      return value
+        .toUpperCase()
+        .replace(/[^A-HJ-NPR-Z0-9]/g, "")
+        .slice(0, 17);
+    }
+
+    function updateProgress() {
+      const vin = cleanVin(vinInput.value);
+      const progress = Math.min(100, Math.round((vin.length / 17) * 100));
+      progressBar.style.width = progress + "%";
+      progressText.textContent = progress + "%";
+    }
+
+    vinInput.addEventListener("input", () => {
+      vinInput.value = cleanVin(vinInput.value);
+      localStorage.setItem("saved_vin_story", vinInput.value);
+      updateProgress();
+    });
+
+    function goToAffiliate() {
+      const vin = cleanVin(vinInput.value.trim());
+
+      if (vin.length < 11) {
+        vinInput.focus();
+        vinInput.classList.add("border-red-500", "ring-4", "ring-red-500/20");
+        return;
+      }
+
+      localStorage.setItem("saved_vin_story", vin);
+
+      window.location.href =
+        BASE_AFFILIATE_URL + "&vin=" + encodeURIComponent(vin);
+    }
+
+    vinForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      goToAffiliate();
+    });
+
+    updateProgress();
+
+    let counter = 1247;
+    setInterval(() => {
+      counter += Math.floor(Math.random() * 2) + 1;
+      todayCounter.textContent = counter.toLocaleString("cs-CZ");
+    }, 5600);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("show");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".fade").forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
